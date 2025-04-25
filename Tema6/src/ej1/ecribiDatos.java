@@ -11,14 +11,21 @@ public class ecribiDatos {
 		Scanner sc = new Scanner(System.in);
 		String texto = "";
 		int num = 0;
-		try (FileWriter writer = new FileWriter("src\\ej1\\escribir.txt", true)){
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("src\\ej1\\escribirPersonas.txt", true))){
+			System.out.println("Nombre");
+			texto = sc.nextLine();
 			while(!texto.equals("fin")) {
-				writer.write(texto);
-				System.out.println("Nombre");
-				texto = sc.nextLine();
+				
 				System.out.println("Edad");
 				num = sc.nextInt();
 				sc.nextLine();
+				
+				bw.write(texto + " "+ num);
+				
+				bw.flush();
+				bw.newLine();
+				System.out.println("Nombre");
+				texto = sc.nextLine();
 			}
 			sc.close();
 		} catch (IOException e) {
